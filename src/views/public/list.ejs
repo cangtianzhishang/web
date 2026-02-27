@@ -1,0 +1,9 @@
+<%- include('../partials/header') %>
+<h1><%= title %></h1>
+<% posts.forEach(post => { %>
+  <article class="card">
+    <h2><a href="/posts/<%= post.slug %>"><%= post.title %></a></h2>
+    <p><%= post.excerpt || post.content.slice(0, 120) %>...</p>
+  </article>
+<% }) %>
+<%- include('../partials/footer') %>

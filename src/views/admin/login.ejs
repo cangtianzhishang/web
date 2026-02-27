@@ -1,0 +1,9 @@
+<%- include('../partials/header') %>
+<h1>后台登录</h1>
+<form method="post" action="/admin/login" class="card">
+  <input name="username" placeholder="用户名" required />
+  <input type="password" name="password" placeholder="密码" required />
+  <button type="submit">登录</button>
+  <% if (error) { %><p class="error"><%= error %></p><% } %>
+</form>
+<%- include('../partials/footer') %>

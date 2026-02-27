@@ -1,0 +1,8 @@
+<%- include('../partials/header') %>
+<h1>归档</h1>
+<ul class="archive-list">
+  <% archives.forEach(item => { %>
+    <li><a href="/archive/<%= item.get('month') %>"><%= item.get('month') %>（<%= item.get('count') %>）</a></li>
+  <% }) %>
+</ul>
+<%- include('../partials/footer') %>

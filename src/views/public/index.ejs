@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+<h1>最新文章</h1>
+<section class="card-grid">
+  <% posts.forEach(post => { %>
+    <article class="card">
+      <h2><a href="/posts/<%= post.slug %>"><%= post.title %></a></h2>
+      <p><%= post.excerpt || post.content.slice(0, 120) %>...</p>
+      <div class="meta">
+        <span><%= dayjs(post.publishedAt || post.createdAt).format('YYYY-MM-DD') %></span>
+        <a href="/categories/<%= post.Category.slug %>"><%= post.Category.name %></a>
+      </div>
+      <div>
+        <% post.Tags.forEach(tag => { %>
+          <a class="tag" href="/tags/<%= tag.slug %>">#<%= tag.name %></a>
+        <% }) %>
+      </div>
+    </article>
+  <% }) %>
+</section>
+<%- include('../partials/footer') %>
