@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<article class="post-detail">
+  <h1><%= post.title %></h1>
+  <p class="meta">发布时间：<%= dayjs(post.publishedAt || post.createdAt).format('YYYY-MM-DD HH:mm') %></p>
+  <div><%- post.content.replace(/\n/g, '<br/>') %></div>
+</article>
+
+<section>
+  <h2>评论</h2>
+  <form method="post" action="/posts/<%= post.slug %>/comments" class="comment-form">
+    <input name="authorName" placeholder="昵称" required />
+    <textarea name="content" placeholder="写下评论..." required></textarea>
+    <button type="submit">提交评论</button>
+  </form>
+
+  <% comments.forEach(comment => { %>
+    <div class="comment">
+      <strong><%= comment.authorName %></strong>
+      <p><%= comment.content %></p>
+      <form method="post" action="/posts/<%= post.slug %>/comments" class="reply-form">
+        <input type="hidden" name="parentId" value="<%= comment.id %>" />
+        <input name="authorName" placeholder="昵称" required />
+        <input name="content" placeholder="回复内容" required />
+        <button type="submit">回复</button>
+      </form>
+      <% comment.replies.forEach(reply => { %>
+        <div class="reply"><strong><%= reply.authorName %></strong>：<%= reply.content %></div>
+      <% }) %>
+    </div>
+  <% }) %>
+</section>
+<%- include('../partials/footer') %>
