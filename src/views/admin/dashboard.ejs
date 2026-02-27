@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+<h1>管理后台</h1>
+<form method="post" action="/admin/logout"><button type="submit">退出登录</button></form>
+<div class="card-grid">
+  <div class="card"><h3>文章数</h3><p><%= stats.postCount %></p></div>
+  <div class="card"><h3>评论数</h3><p><%= stats.commentCount %></p></div>
+  <div class="card"><h3>访问量</h3><p><%= stats.viewCount %></p></div>
+</div>
+<p>统计时间：<%= stats.generatedAt %></p>
+<p><a href="/admin/posts">管理文章</a></p>
+<%- include('../partials/footer') %>
